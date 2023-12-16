@@ -1,4 +1,4 @@
-import {RouteProp, useRoute} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {
   Box,
   Button,
@@ -21,12 +21,13 @@ import {getMoviePosterPath} from '../../utils/util';
 type DetailScreenRouteProp = RouteProp<AppStackParamList, 'Details'>;
 
 export function DetailScreen() {
+  const navigation = useNavigation();
   const route = useRoute<DetailScreenRouteProp>();
   const {movieId} = route.params;
   const {data, isLoading} = useMovieDetail(movieId);
 
   return (
-    <HeaderLayout title="Movie Details">
+    <HeaderLayout title="Movie Details" goBack={navigation.goBack}>
       <Box flex={1} testID="Movie-Details">
         {isLoading && (
           <Center flex={1}>
