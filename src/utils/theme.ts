@@ -8,7 +8,7 @@ export const theme = extendTheme({
       light: '#DEDEDE',
       lightest: '#FAFAFA',
     },
-    iconGray: '#746A64',
+    textBg: '#746A64',
     white: '#FFFFFF',
   },
 });

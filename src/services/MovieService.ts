@@ -20,4 +20,10 @@ export const MovieService = {
       hasMore: page < response.data.total_pages,
     };
   },
+  getMovieDetail: async (movieId: number) => {
+    const response = await axiosClient.get<Movie>(
+      `movie/${movieId}?api_key=${MOVIE_API_KEY}`,
+    );
+    return response.data;
+  },
 };

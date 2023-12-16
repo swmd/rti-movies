@@ -3,7 +3,7 @@ import {MovieService} from '../services/MovieService';
 import {useEffect, useMemo, useState} from 'react';
 import {Movie} from '../utils/types';
 
-export const QUERY_KEY = 'POPULAR_MOVIES';
+export const POP_QUERY_KEY = 'POP_MOVIES';
 
 const useMovies = () => {
   const [page, setPage] = useState(1);
@@ -11,7 +11,7 @@ const useMovies = () => {
   const [hasMore, setHasMore] = useState(true);
 
   const {data, isLoading, isFetched, isError} = useQuery({
-    queryKey: [QUERY_KEY, page],
+    queryKey: [POP_QUERY_KEY, page],
     queryFn: () => MovieService.getPopularMovies(page),
   });
 
