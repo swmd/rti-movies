@@ -1,7 +1,6 @@
 ## Screenshots
 
-<img src="screenshots/discovery.png" width="300" alt="Discovery View" title="Discovery Screen">
-<img src="screenshots/detail.png" width="300" alt="Detail View" title="Detail Screen">
+<img src="screenshots/discovery.png" width="300" alt="Discovery View" title="Discovery Screen"> &nbsp;&nbsp;&nbsp;&nbsp; <img src="screenshots/detail.png" width="300" alt="Detail View" title="Detail Screen">
 
 # Running the app
 
