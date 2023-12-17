@@ -3,7 +3,7 @@ import {MovieService} from '../services/MovieService';
 
 export const DETAIL_QUERY_KEY = 'MOVIE_DETAIL';
 
-const useMovieDetail = (movieId: number) => {
+export const useMovieDetail = (movieId: number) => {
   const {data, isLoading} = useQuery({
     queryKey: [DETAIL_QUERY_KEY, movieId],
     queryFn: () => MovieService.getMovieDetail(movieId),
@@ -14,5 +14,3 @@ const useMovieDetail = (movieId: number) => {
     isLoading,
   };
 };
-
-export default useMovieDetail;

@@ -13,7 +13,7 @@ import React from 'react';
 import {Image} from 'react-native';
 
 import {AppStackParamList} from '../../navigation/AppNavigator';
-import useMovieDetail from '../../hooks/useMovieDetail';
+import {useMovieDetail} from '../../hooks/useMovieDetail';
 import {HeaderLayout} from '../../layout/HeaderLayout/HeaderLayout';
 import {styles} from './styles';
 import {getMoviePosterPath} from '../../utils/util';
@@ -37,7 +37,7 @@ export function DetailScreen() {
         {!isLoading && data && (
           <>
             <Box p={4} bgColor="textBg">
-              <Text color="white" style={styles.title}>
+              <Text color="white" style={styles.title} testID="Movie-Title">
                 {data.original_title}
               </Text>
             </Box>
@@ -46,17 +46,26 @@ export function DetailScreen() {
                 <Image
                   source={{uri: getMoviePosterPath(data.poster_path)}}
                   style={styles.image}
-                  testID={`movie-details-poster-${data.id}`}
+                  testID={`Movie-Poster-${data.id}`}
                 />
                 <VStack flex={1} ml={6} justifyContent="space-between">
-                  <Text color="gray.dark" style={styles.releaseDate}>
+                  <Text
+                    color="gray.dark"
+                    style={styles.releaseDate}
+                    testID="Movie-Release-Date">
                     {data.release_date}
                   </Text>
-                  <Text color="gray.dark" style={styles.rating}>
+                  <Text
+                    color="gray.dark"
+                    style={styles.rating}
+                    testID="Movie-Score">
                     {data.vote_average.toFixed(1)} / 10
                   </Text>
                   <Button bgColor="textBg" style={styles.favoriteButton}>
-                    <Text color="white" style={styles.favoriteButtonText}>
+                    <Text
+                      color="white"
+                      style={styles.favoriteButtonText}
+                      testID="Btn-Favorite">
                       Add to Favorite
                     </Text>
                   </Button>

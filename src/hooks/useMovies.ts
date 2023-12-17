@@ -5,7 +5,7 @@ import {Movie} from '../utils/types';
 
 export const POP_QUERY_KEY = 'POP_MOVIES';
 
-const useMovies = () => {
+export const useMovies = () => {
   const [page, setPage] = useState(1);
   const [moviesByPage, setMoviesByPage] = useState<Record<number, Movie[]>>({});
   const [hasMore, setHasMore] = useState(true);
@@ -46,5 +46,3 @@ const useMovies = () => {
     isError,
   };
 };
-
-export default useMovies;

@@ -8,7 +8,7 @@ import {AppStackParamList} from '../../navigation/AppNavigator';
 import {Movie} from '../../utils/types';
 import {HeaderLayout} from '../../layout/HeaderLayout/HeaderLayout';
 import {styles} from './styles';
-import useMovies from '../../hooks/useMovies';
+import {useMovies} from '../../hooks/useMovies';
 import {getMoviePosterPath} from '../../utils/util';
 
 export type DiscoveryScreenNavigationProp = StackNavigationProp<
@@ -58,7 +58,7 @@ export function DiscoveryScreen() {
 
   return (
     <HeaderLayout title="Pop Movies">
-      <Box flex={1} testID="Movie-Search">
+      <Box flex={1} testID="Pop-Discovery">
         <FlatList
           ListEmptyComponent={renderListEmpty}
           ListFooterComponent={renderListFooter}
