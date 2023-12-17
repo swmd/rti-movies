@@ -13,9 +13,14 @@ export function HeaderLayout({title, goBack, children}: HeaderLayoutProps) {
     <SafeAreaView style={{flex: 1}}>
       <HStack alignItems={'center'} bgColor={'gray.dark'} height={16} px={4}>
         {goBack && (
-          <IconButton icon={<ChevronLeftIcon />} onPress={goBack} ml={-4} />
+          <IconButton
+            icon={<ChevronLeftIcon />}
+            onPress={goBack}
+            ml={-4}
+            testID="Btn-Back"
+          />
         )}
-        <Text flex={1} color="white" fontSize={20} bold>
+        <Text flex={1} color="white" fontSize={20} bold testID="Header-Title">
           {title}
         </Text>
         <EllipsisVerticalIcon color="white" />
