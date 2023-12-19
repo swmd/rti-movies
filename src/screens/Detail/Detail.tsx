@@ -9,7 +9,7 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import React from 'react';
+import React, {useCallback, useContext, useMemo} from 'react';
 import {Image} from 'react-native';
 
 import {AppStackParamList} from '../../navigation/AppNavigator';
@@ -17,6 +17,7 @@ import {useMovieDetail} from '../../hooks/useMovieDetail';
 import {HeaderLayout} from '../../layout/HeaderLayout/HeaderLayout';
 import {styles} from './styles';
 import {getMoviePosterPath} from '../../utils/util';
+import {FavoriteContext} from '../../context/FavoriteContext';
 
 type DetailScreenRouteProp = RouteProp<AppStackParamList, 'Details'>;
 
@@ -25,6 +26,23 @@ export function DetailScreen() {
   const route = useRoute<DetailScreenRouteProp>();
   const {movieId} = route.params;
   const {data, isLoading} = useMovieDetail(movieId);
+
+  const {isFavorite, addFavorite, removeFavorite} = useContext(FavoriteContext);
+
+  const favorited = useMemo(() => {
+    if (isFavorite && isFavorite(movieId)) {
+      return true;
+    }
+    return false;
+  }, [isFavorite, movieId]);
+
+  const handleFavorite = useCallback(() => {
+    if (favorited) {
+      removeFavorite?.(movieId);
+    } else {
+      addFavorite?.(movieId);
+    }
+  }, [favorited, removeFavorite, addFavorite, movieId]);
 
   return (
     <HeaderLayout title="Movie Details" goBack={navigation.goBack}>
@@ -61,12 +79,15 @@ export function DetailScreen() {
                     testID="Movie-Score">
                     {data.vote_average.toFixed(1)} / 10
                   </Text>
-                  <Button bgColor="textBg" style={styles.favoriteButton}>
+                  <Button
+                    bgColor="textBg"
+                    style={styles.favoriteButton}
+                    onPress={handleFavorite}>
                     <Text
                       color="white"
                       style={styles.favoriteButtonText}
                       testID="Btn-Favorite">
-                      Add to Favorite
+                      {favorited ? 'Remove from Favorites' : 'Add to Favorites'}
                     </Text>
                   </Button>
                 </VStack>

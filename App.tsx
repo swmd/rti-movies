@@ -3,6 +3,7 @@ import {NativeBaseProvider} from 'native-base';
 import React from 'react';
 import {theme} from './src/utils/theme';
 import AppNavigator from './src/navigation/AppNavigator';
+import {FavoriteContextProvider} from './src/context/FavoriteContext';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,11 +16,13 @@ const queryClient = new QueryClient({
 
 function App(): React.JSX.Element {
   return (
-    <NativeBaseProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-        <AppNavigator />
-      </QueryClientProvider>
-    </NativeBaseProvider>
+    <FavoriteContextProvider>
+      <NativeBaseProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <AppNavigator />
+        </QueryClientProvider>
+      </NativeBaseProvider>
+    </FavoriteContextProvider>
   );
 }
 
